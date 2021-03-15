@@ -1,0 +1,115 @@
+body {
+  background-color: white;
+}
+input {
+  float:left;
+}
+#option1 {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background-image: url('../images/dad.jpg');
+  background-size: cover;
+  float: left;
+}
+#option2 {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background-image: url('../images/mom.png');
+  background-size: cover;
+  float: left;
+}
+#option3 {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background-image: url('../images/kid.jpg');
+  background-size: cover;
+  float: left;
+}
+#option4 {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background-size: cover;
+  float: left;
+}
+#option5 {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background-size: cover;
+  float: left;
+}
+#option6 {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background-size: cover;
+  float: left;
+}
+#option7 {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background-size: cover;
+  float: left;
+  background-image: url('../images/house.jpg');
+}
+#option8 {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background-size: cover;
+  float: left;
+  background-image: url('../images/store.jpg');
+}
+#draggedto {
+  overflow: hidden;
+  width: 1000px;
+}
+#title {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 2%;
+  font-weight: bold;
+  font-size: 60px;
+}
+#amounts {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 1%;
+  font-weight: bold;
+  font-size: 20px;
+}
+#housestore {
+  margin-left: 40%;
+}
+#startbutton {
+  height: 9vh;
+  width: 30vw;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: green;
+  color: white;
+  border-radius: 25px;
+}
+#feed {
+  text-align: center;
+}
+#btn {
+  margin-top: 20%;
+}
+.center-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+.submit {
+  display: table-cell;
+  width: 250px;
+
+}
