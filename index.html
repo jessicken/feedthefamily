@@ -1,0 +1,276 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<script>
+  let names = ['pa', 'ma', 'sonny'];
+  let harvest_objs = {
+    beef: 0,
+    chicken: 0,
+    pork: 0,
+    carrot:0,
+    milk: 0,
+    brock: 0,
+    potato: 0,
+    eggs:0
+  };
+function start_scene() {
+  document.getElementById('scene').innerHTML =
+  "<div>    <div id='option1'></div>    <div id='option2'></div>    <div id='option3'></div>  </div>  <div id='inputs'>    <div class='submit'>      <input id='val1' type='text'/>      <button onclick='get_val1()'>submit</button>    </div>    <div class='submit'>      <input id='val2' type='text'/>      <input type='submit' onclick='get_val2()'/>    </div>    <div class='submit'>      <input id='val3' type='text'/>      <input type='submit' onclick='get_val3()'/>    </div>  </div>";
+  document.getElementById('title').innerHTML = "You are in charge of a farming family. What are their names?";
+  document.getElementById('title').style.fontSize = "20px";
+}
+
+function get_val1() {
+  let name = document.getElementById('val1').value;
+  console.log(name);
+  document.getElementById('option1').innerHTML = name;
+  names[0] = name;
+  document.getElementById('val1').value = '';
+}
+function get_val2() {
+  let name = document.getElementById('val2').value;
+  console.log(name);
+  document.getElementById('option2').innerHTML = name;
+  names[1] = name;
+  document.getElementById('val2').value = '';
+}
+function get_val3() {
+  let name = document.getElementById('val3').value;
+  console.log(name);
+  document.getElementById('option3').innerHTML = name;
+  document.getElementById('val3').value = '';
+  names[2] = name;
+  console.log(names);
+  setTimeout(veg_scene, 1000);
+}
+
+function veg_scene() {
+  document.getElementById('scene').innerHTML =
+  "<div><div id='option1'></div><div id='option2'></div><div id='option3'></div></div>";
+  document.getElementById('option1').style.backgroundImage = "url(./images/carrot.jpg)";
+  document.getElementById('option2').style.backgroundImage = "url(./images/potato.jpg)";
+  document.getElementById('option3').style.backgroundImage = "url(./images/brock.png)";
+  document.getElementById('title').innerHTML = "Here are the vegetables you will help them grow.";
+  setTimeout(animal_scene, 3000);
+}
+
+function animal_scene() {
+  document.getElementById('scene').innerHTML =
+  "<div><div id='option1'></div><div id='option2'></div><div id='option3'></div></div>";
+  document.getElementById('option1').style.backgroundImage = "url(./images/pig.png)";
+  document.getElementById('option2').style.backgroundImage = "url(./images/cow.jpg)";
+  document.getElementById('option3').style.backgroundImage = "url(./images/chicken.jpg)";
+  document.getElementById('title').innerHTML = "Here are the animals you will help them raise.";
+  setTimeout(int_scene, 3000);
+}
+
+function int_scene() {
+  document.getElementById('title').innerHTML = "Harvest!";
+  document.getElementById('scene').innerHTML =
+  "<div><div id='option1'></div><div id='option2'></div><div id='option3'></div><div id='option4'></div><div id='option5'></div><div id='option6'></div> <div id='feed'>Click the house to feed the family!</div><div id='housestore'><div id='option7'></div><button id='btn' onclick='finish()'>Finish</button></div> </div>";
+  document.getElementById('option1').style.backgroundImage = "url(./images/carrot.jpg)";
+  document.getElementById('option2').style.backgroundImage = "url(./images/potato.jpg)";
+  document.getElementById('option3').style.backgroundImage = "url(./images/brock.png)";
+  document.getElementById('option4').style.backgroundImage = "url(./images/pig.png)";
+  document.getElementById('option5').style.backgroundImage = "url(./images/cow.jpg)";
+  document.getElementById('option6').style.backgroundImage = "url(./images/chicken.jpg)";
+  document.getElementById('amounts').innerHTML = "Beef: 0 | Chicken: 0 | Pork: 0 | Eggs: 0 | Milk: 0 | Carrots: 0 | Potatoes: 0 | Broccoli: 0";
+  document.getElementById('option5').addEventListener("click", inc_beef);
+  document.getElementById('option4').addEventListener("click", inc_pork);
+  document.getElementById('option6').addEventListener("click", inc_chicken);
+  document.getElementById('option1').addEventListener("click", inc_carrot);
+  document.getElementById('option2').addEventListener("click", inc_potato);
+  document.getElementById('option3').addEventListener("click", inc_brock);
+  document.getElementById('option7').addEventListener("click", dec_all);
+}
+
+function inc_beef() {
+  let beef = document.getElementById('amounts').innerHTML.split("|")[0];
+  let chicken = document.getElementById('amounts').innerHTML.split("|")[1];
+  let pork = document.getElementById('amounts').innerHTML.split("|")[2];
+  let eggs = document.getElementById('amounts').innerHTML.split("|")[3];
+  let milk = document.getElementById('amounts').innerHTML.split("|")[4];
+  let carrot = document.getElementById('amounts').innerHTML.split("|")[5];
+  let potato = document.getElementById('amounts').innerHTML.split("|")[6];
+  let brock = document.getElementById('amounts').innerHTML.split("|")[7];
+  let beefnum = Number(beef.split(" ")[1]) + 1;
+  let chicknum = Number(chicken.split(" ")[2]);
+  let porknum = Number(pork.split(" ")[2]);
+  let eggnum = Number(eggs.split(" ")[2]);
+  let milknum = Number(milk.split(" ")[2]) + 1;
+  let carrotnum = Number(carrot.split(" ")[2]);
+  let potatonum = Number(potato.split(" ")[2]);
+  let brocknum = Number(brock.split(" ")[2]);
+  harvest_objs.beef = beefnum;
+  harvest_objs.milk = milknum;
+
+  document.getElementById('amounts').innerHTML = "Beef: "+ beefnum.toString() + " | Chicken: "+chicknum.toString()+" | Pork: "+porknum.toString()+" | Eggs: "+eggnum.toString()+" | Milk: "+ milknum.toString() + " | Carrots: "+carrotnum.toString()+" | Potatoes: "+potatonum.toString()+" | Broccoli: "+brocknum.toString();
+}
+function inc_pork() {
+  let beef = document.getElementById('amounts').innerHTML.split("|")[0];
+  let chicken = document.getElementById('amounts').innerHTML.split("|")[1];
+  let pork = document.getElementById('amounts').innerHTML.split("|")[2];
+  let eggs = document.getElementById('amounts').innerHTML.split("|")[3];
+  let milk = document.getElementById('amounts').innerHTML.split("|")[4];
+  let carrot = document.getElementById('amounts').innerHTML.split("|")[5];
+  let potato = document.getElementById('amounts').innerHTML.split("|")[6];
+  let brock = document.getElementById('amounts').innerHTML.split("|")[7];
+  let beefnum = Number(beef.split(" ")[1]);
+  let chicknum = Number(chicken.split(" ")[2]);
+  let porknum = Number(pork.split(" ")[2])+1;
+  let eggnum = Number(eggs.split(" ")[2]);
+  let milknum = Number(milk.split(" ")[2]);
+  let carrotnum = Number(carrot.split(" ")[2]);
+  let potatonum = Number(potato.split(" ")[2]);
+  let brocknum = Number(brock.split(" ")[2]);
+  harvest_objs.pork = porknum;
+
+  document.getElementById('amounts').innerHTML = "Beef: "+ beefnum.toString() + " | Chicken: "+chicknum.toString()+" | Pork: "+porknum.toString()+" | Eggs: "+eggnum.toString()+" | Milk: "+ milknum.toString() + " | Carrots: "+carrotnum.toString()+" | Potatoes: "+potatonum.toString()+" | Broccoli: "+brocknum.toString();
+}
+
+function inc_chicken() {
+  let beef = document.getElementById('amounts').innerHTML.split("|")[0];
+  let chicken = document.getElementById('amounts').innerHTML.split("|")[1];
+  let pork = document.getElementById('amounts').innerHTML.split("|")[2];
+  let eggs = document.getElementById('amounts').innerHTML.split("|")[3];
+  let milk = document.getElementById('amounts').innerHTML.split("|")[4];
+  let carrot = document.getElementById('amounts').innerHTML.split("|")[5];
+  let potato = document.getElementById('amounts').innerHTML.split("|")[6];
+  let brock = document.getElementById('amounts').innerHTML.split("|")[7];
+  let beefnum = Number(beef.split(" ")[1]);
+  let chicknum = Number(chicken.split(" ")[2])+1;
+  let porknum = Number(pork.split(" ")[2]);
+  let eggnum = Number(eggs.split(" ")[2])+1;
+  let milknum = Number(milk.split(" ")[2]);
+  let carrotnum = Number(carrot.split(" ")[2]);
+  let potatonum = Number(potato.split(" ")[2]);
+  let brocknum = Number(brock.split(" ")[2]);
+  harvest_objs.chicken = chicknum;
+  harvest_objs.eggs = eggnum;
+
+  document.getElementById('amounts').innerHTML = "Beef: "+ beefnum.toString() + " | Chicken: "+chicknum.toString()+" | Pork: "+porknum.toString()+" | Eggs: "+eggnum.toString()+" | Milk: "+ milknum.toString() + " | Carrots: "+carrotnum.toString()+" | Potatoes: "+potatonum.toString()+" | Broccoli: "+brocknum.toString();
+}
+
+function inc_carrot() {
+  let beef = document.getElementById('amounts').innerHTML.split("|")[0];
+  let chicken = document.getElementById('amounts').innerHTML.split("|")[1];
+  let pork = document.getElementById('amounts').innerHTML.split("|")[2];
+  let eggs = document.getElementById('amounts').innerHTML.split("|")[3];
+  let milk = document.getElementById('amounts').innerHTML.split("|")[4];
+  let carrot = document.getElementById('amounts').innerHTML.split("|")[5];
+  let potato = document.getElementById('amounts').innerHTML.split("|")[6];
+  let brock = document.getElementById('amounts').innerHTML.split("|")[7];
+  let beefnum = Number(beef.split(" ")[1]);
+  let chicknum = Number(chicken.split(" ")[2]);
+  let porknum = Number(pork.split(" ")[2]);
+  let eggnum = Number(eggs.split(" ")[2]);
+  let milknum = Number(milk.split(" ")[2]);
+  let carrotnum = Number(carrot.split(" ")[2])+1;
+  let potatonum = Number(potato.split(" ")[2]);
+  let brocknum = Number(brock.split(" ")[2]);
+  harvest_objs.carrot = carrotnum;
+
+  document.getElementById('amounts').innerHTML = "Beef: "+ beefnum.toString() + " | Chicken: "+chicknum.toString()+" | Pork: "+porknum.toString()+" | Eggs: "+eggnum.toString()+" | Milk: "+ milknum.toString() + " | Carrots: "+carrotnum.toString()+" | Potatoes: "+potatonum.toString()+" | Broccoli: "+brocknum.toString();
+}
+
+function inc_potato() {
+  let beef = document.getElementById('amounts').innerHTML.split("|")[0];
+  let chicken = document.getElementById('amounts').innerHTML.split("|")[1];
+  let pork = document.getElementById('amounts').innerHTML.split("|")[2];
+  let eggs = document.getElementById('amounts').innerHTML.split("|")[3];
+  let milk = document.getElementById('amounts').innerHTML.split("|")[4];
+  let carrot = document.getElementById('amounts').innerHTML.split("|")[5];
+  let potato = document.getElementById('amounts').innerHTML.split("|")[6];
+  let brock = document.getElementById('amounts').innerHTML.split("|")[7];
+  let beefnum = Number(beef.split(" ")[1]);
+  let chicknum = Number(chicken.split(" ")[2]);
+  let porknum = Number(pork.split(" ")[2]);
+  let eggnum = Number(eggs.split(" ")[2]);
+  let milknum = Number(milk.split(" ")[2]);
+  let carrotnum = Number(carrot.split(" ")[2]);
+  let potatonum = Number(potato.split(" ")[2])+1;
+  let brocknum = Number(brock.split(" ")[2]);
+  harvest_objs.potato = potatonum;
+
+  document.getElementById('amounts').innerHTML = "Beef: "+ beefnum.toString() + " | Chicken: "+chicknum.toString()+" | Pork: "+porknum.toString()+" | Eggs: "+eggnum.toString()+" | Milk: "+ milknum.toString() + " | Carrots: "+carrotnum.toString()+" | Potatoes: "+potatonum.toString()+" | Broccoli: "+brocknum.toString();
+}
+function inc_brock() {
+  let beef = document.getElementById('amounts').innerHTML.split("|")[0];
+  let chicken = document.getElementById('amounts').innerHTML.split("|")[1];
+  let pork = document.getElementById('amounts').innerHTML.split("|")[2];
+  let eggs = document.getElementById('amounts').innerHTML.split("|")[3];
+  let milk = document.getElementById('amounts').innerHTML.split("|")[4];
+  let carrot = document.getElementById('amounts').innerHTML.split("|")[5];
+  let potato = document.getElementById('amounts').innerHTML.split("|")[6];
+  let brock = document.getElementById('amounts').innerHTML.split("|")[7];
+  let beefnum = Number(beef.split(" ")[1]);
+  let chicknum = Number(chicken.split(" ")[2]);
+  let porknum = Number(pork.split(" ")[2]);
+  let eggnum = Number(eggs.split(" ")[2]);
+  let milknum = Number(milk.split(" ")[2]);
+  let carrotnum = Number(carrot.split(" ")[2]);
+  let potatonum = Number(potato.split(" ")[2]);
+  let brocknum = Number(brock.split(" ")[2])+1;
+  harvest_objs.brock = brocknum;
+  console.log(harvest_objs);
+
+  document.getElementById('amounts').innerHTML = "Beef: "+ beefnum.toString() + " | Chicken: "+chicknum.toString()+" | Pork: "+porknum.toString()+" | Eggs: "+eggnum.toString()+" | Milk: "+ milknum.toString() + " | Carrots: "+carrotnum.toString()+" | Potatoes: "+potatonum.toString()+" | Broccoli: "+brocknum.toString();
+}
+function dec_all() {
+  let beef = document.getElementById('amounts').innerHTML.split("|")[0];
+  let chicken = document.getElementById('amounts').innerHTML.split("|")[1];
+  let pork = document.getElementById('amounts').innerHTML.split("|")[2];
+  let eggs = document.getElementById('amounts').innerHTML.split("|")[3];
+  let milk = document.getElementById('amounts').innerHTML.split("|")[4];
+  let carrot = document.getElementById('amounts').innerHTML.split("|")[5];
+  let potato = document.getElementById('amounts').innerHTML.split("|")[6];
+  let brock = document.getElementById('amounts').innerHTML.split("|")[7];
+  let beefnum = Number(beef.split(" ")[1])-1;
+  let chicknum = Number(chicken.split(" ")[2])-1;
+  let porknum = Number(pork.split(" ")[2])-1;
+  let eggnum = Number(eggs.split(" ")[2])-1;
+  let milknum = Number(milk.split(" ")[2])-1;
+  let carrotnum = Number(carrot.split(" ")[2])-1;
+  let potatonum = Number(potato.split(" ")[2])-1;
+  let brocknum = Number(brock.split(" ")[2])-1;
+  if (beefnum < 0 || chicknum < 0 || porknum < 0 || eggnum < 0 || milknum < 0 || carrotnum < 0 || potatonum < 0 || brocknum < 0) {
+    alert("This is not enough food to feed the family. Harvest more!");
+    return
+  }
+
+  document.getElementById('amounts').innerHTML = "Beef: "+ beefnum.toString() + " | Chicken: "+chicknum.toString()+" | Pork: "+porknum.toString()+" | Eggs: "+eggnum.toString()+" | Milk: "+ milknum.toString() + " | Carrots: "+carrotnum.toString()+" | Potatoes: "+potatonum.toString()+" | Broccoli: "+brocknum.toString();
+}
+
+function finish() {
+  harvest_objs.beef *= 27;
+  harvest_objs.chicken *= 6.9;
+  harvest_objs.pork *= 12.1;
+  harvest_objs.eggs *= 4.8;
+  harvest_objs.milk *= 1.9;
+  harvest_objs.potato *= 2.9;
+  harvest_objs.carrot *= 2;
+  harvest_objs.brock *= 2;
+
+  document.getElementById('amounts').innerHTML = "Beef: "+ harvest_objs.beef.toString() + " kg CO2 | Chicken: "+harvest_objs.chicken.toString()+" kg CO2 | Pork: "+harvest_objs.pork.toString()+" kg CO2 | Eggs: "+harvest_objs.eggs.toString()+" kg CO2 | Milk: "+harvest_objs.milk.toString() + " kg CO2 | Carrots: "+harvest_objs.carrot.toString()+" kg CO2 | Potatoes: "+harvest_objs.potato.toString()+" kg CO2 | Broccoli: "+harvest_objs.brock.toString()+" kg CO2";
+  console.log(harvest_objs);
+  let total = 0;
+  for (var x in harvest_objs) {
+    total += harvest_objs[x];
+  }
+  console.log(total);
+  document.getElementById('title').innerHTML = "You helped " + names[0] + ", " + names[1] + ", and " +names[2] + " create "+total.toString() +" kilograms of CO2! Thank you for helping feed the family!";
+  document.getElementById('scene').innerHTML = "1 kg of Beef produces 27.0 kg CO2 <br> 1 kg of Pork produces 12.1 kg CO2 <br> 1 kg of chicken produces 6.9 kg CO2 <br> 1 kg of milk produces 1.9 kg CO2 <br> 1 kg of eggs produces 4.8 kg CO2 <br> 1 kg of potatoes produces 2.9 kg CO2 <br> 1 kg of broccoli produces 2.0 kg CO2 <br> 1 kg of carrots produces 2.0 kg CO2 <br><br> Thank you for helping feed the family!";
+}
+
+</script>
+</head>
+<body>
+<div id="title">Feed the Family</div>
+<div id="amounts"></div>
+<div id="scene" class="center-screen">
+  <button id="startbutton" onclick="start_scene()">Start</button>
+</div>
+
+</body>
+</html>
